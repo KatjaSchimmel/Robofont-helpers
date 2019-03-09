@@ -1,5 +1,4 @@
-#checks the font for overlapping points on contours of all glyphs
-#by looping through all the points of a contour and checking their coordinates
+#checks the font for overlapping points by looping through all the points of a contour and checking their coordinates
 
 font = CurrentFont()
 overlappingPoints = {}

@@ -1,5 +1,4 @@
 # Marks composites, components, mixed and transformed components 
-
 # Works in Robofont Version 1 and 3
 # RF version check
 from mojo.roboFont import version

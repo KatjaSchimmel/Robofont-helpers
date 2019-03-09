@@ -3,8 +3,8 @@
 remove_overlaps = False 
 
 color = None #reset color
-color_overl_contour = 0.5,0.5,1,0.2 #blau
-color_overl_point = 1,0.5,1,0.4 #rosa
+color_overl_contour = 0,0.8,1,0.4 #blau
+color_overl_point = 1,0.5,1,0.3 #rosa
 color_open_contour = 0.8,0.5,1,1 #lila
 
 def is_empty(errors):
@@ -17,16 +17,10 @@ def mark_glyph(glyph_name, color):
     font[glyph_name].markColor = color  
     
 def unpackPoint(pt):
-    return glyph.name, (pt.x, pt.y)
-
-# def is_open(glyph):
-#     # based on https://stackoverflow.com/questions/16505456/how-exactly-does-the-python-any-function-work/16505590
-#     # is true if any of the contours in the glyph is open
-#     return any(c.open == True for c in glyph.contours)    
+    return glyph.name, (pt.x, pt.y) 
 
 #checks for errors and marks them        
 for font in AllFonts():
-    
     overlappingContours = []
     overlappingPoints = [] #list of glyphnames with overlapping points
     openContours = []
@@ -58,7 +52,6 @@ for font in AllFonts():
                         if index not in glyphOverlappingPoints.keys():
                             glyphOverlappingPoints[index] = set() #set contains only unique elements
                         glyphOverlappingPoints[index].add(point[1]) #adds the x and y coordinates of the point to the dict
-                        # print(glyphOverlappingPoints, glyph.name)
                         mark_glyph(glyph.name, color_overl_point)
                     prev = point 
             if len(glyphOverlappingPoints.keys()) > 0:
