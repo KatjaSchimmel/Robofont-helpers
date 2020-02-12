@@ -5,7 +5,9 @@ font = CurrentFont()
 xheight = font.info.xHeight #y-value to be checked for
 overshoot = 1556
 y_coordinates = []
+values = []
 print("x-height", xheight)
+print("overshoot", overshoot)
 lowercase_rounds = ["o", "n", "uni037B"]
 lowercase_straights = ["omegacyrillic", "idotless", "kgreenlandic"]
 # print(lowercase_rounds)
@@ -14,22 +16,26 @@ lowercase_straights = ["omegacyrillic", "idotless", "kgreenlandic"]
 for g in lowercase_rounds:
     for contour in font[g]:
         for seg in contour:
-            for point in seg:
-                # y_coordinates = point.y
-                values = g, point.y
-                y_coordinates.append(values)
-print(y_coordinates)
+            for point in seg:            
+                values.append((g,point.y)) #all y coordinates
 
-# values = y_coordinates.split("] ")
-# print(values)
-    
+values.sort()
+singlevalues = list(dict.fromkeys(values))
+print(singlevalues)
+
+
+#find highest point in glyph
+# print and mark glyphs higher or lower then x-height/overshoot
+
+            # y_coordinates.append(values) # should be only the max values
+
 # for value in y_coordinates:
-#     print(y_coordinates[0])
-#     values.extend((g, y_coordinates))
-# print(values)
+#     # print(value[1])
+#     if value[1] > overshoot:
+#         print(value[0], value[1])
+# # now we just need to check the max values instead all of them
 
-# print(g, max(y_coordinates))
-                # print(g, point.y)
+
 
 # # print and mark straight glyphs that are bigger then x-height
 # for g in lowercase_straights:
